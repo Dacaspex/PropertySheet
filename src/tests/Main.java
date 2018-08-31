@@ -1,6 +1,9 @@
 package tests;
 
 import com.dacaspex.propertysheet.PropertySheet;
+import com.dacaspex.propertysheet.property.BooleanProperty;
+import com.dacaspex.propertysheet.property.ColorProperty;
+import com.dacaspex.propertysheet.property.FloatProperty;
 import com.dacaspex.propertysheet.property.IntegerProperty;
 
 import javax.swing.*;
@@ -59,13 +62,17 @@ public class Main {
 
         public void buildPropertyTable() {
 
-            IntegerProperty prop = new IntegerProperty("Iterations", 2);
+            IntegerProperty prop1 = new IntegerProperty("Iterations", 2);
+            ColorProperty prop2 = new ColorProperty("Color", Color.BLUE);
+            BooleanProperty prop3 = new BooleanProperty("Boolean", true);
+            FloatProperty prop4 = new FloatProperty("Float", 1.2f);
 
             propertyTable = new PropertySheet();
-            propertyTable.addProperty(prop, Integer.class);
-            propertyTable.addProperty(prop, Integer.class);
+            propertyTable.addProperty(prop1);
+            propertyTable.addProperty(prop2);
+            propertyTable.addProperty(prop3);
+            propertyTable.addProperty(prop4);
 
         }
-
     }
 }
