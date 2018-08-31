@@ -1,13 +1,10 @@
 package com.dacaspex.propertysheet;
 
-import com.dacaspex.propertysheet.editor.ColorEditor;
-import com.dacaspex.propertysheet.editor.EditorController;
-import com.dacaspex.propertysheet.editor.FloatEditor;
-import com.dacaspex.propertysheet.editor.IntegerEditor;
-import com.dacaspex.propertysheet.editor.BooleanEditor;
+import com.dacaspex.propertysheet.editor.*;
+import com.dacaspex.propertysheet.event.PropertySheetUpdateListener;
 import com.dacaspex.propertysheet.property.*;
-import com.dacaspex.propertysheet.renderer.ColorRenderer;
 import com.dacaspex.propertysheet.renderer.BooleanRenderer;
+import com.dacaspex.propertysheet.renderer.ColorRenderer;
 
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
@@ -18,6 +15,7 @@ import java.util.HashMap;
 public class PropertySheet extends JTable {
 
     private String[] headers;
+    private Color backgroundColor;
     private Color invalidColor;
     private int rowHeight;
     private int cursor;
@@ -28,10 +26,13 @@ public class PropertySheet extends JTable {
     private HashMap<Integer, TableCellRenderer> renderers;
     private PropertySheetModel propertySheetModel;
 
+    private ArrayList<PropertySheetUpdateListener> listeners;
+
     public PropertySheet() {
 
         // Set cosmetics
         this.headers = new String[]{"Property", "value"};
+        this.backgroundColor = Color.WHITE;
         this.invalidColor = new Color(255, 114, 114);
         this.rowHeight = 30;
 
@@ -41,12 +42,21 @@ public class PropertySheet extends JTable {
         this.editorController = new EditorController();
         this.renderers = new HashMap<>();
         this.propertySheetModel = new PropertySheetModel(headers);
+        this.listeners = new ArrayList<>();
 
         // Set table properties
         setModel(propertySheetModel);
         getColumnModel().getColumn(1).setCellEditor(editorController);
         setRowHeight(rowHeight);
         getTableHeader().setReorderingAllowed(false);
+    }
+
+    public Color getBackgroundColor() {
+        return backgroundColor;
+    }
+
+    public Color getInvalidColor() {
+        return invalidColor;
     }
 
     public void addProperty(Property property) {
@@ -93,5 +103,17 @@ public class PropertySheet extends JTable {
         }
 
         return super.getCellRenderer(row, column);
+    }
+
+    public void addUpdateListener(PropertySheetUpdateListener listener) {
+        listeners.add(listener);
+    }
+
+    public void removeUpdateListener(PropertySheetUpdateListener listener) {
+        listeners.remove(listener);
+    }
+
+    public void dispatchUpdateEvent(Property property) {
+        listeners.forEach(l -> l.onUpdate(property));
     }
 }

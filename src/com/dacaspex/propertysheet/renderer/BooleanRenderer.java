@@ -6,8 +6,6 @@ import java.awt.*;
 
 public class BooleanRenderer extends JCheckBox implements TableCellRenderer {
 
-    private static final long serialVersionUID = 1L;
-
     public BooleanRenderer() {
         setOpaque(true);
     }

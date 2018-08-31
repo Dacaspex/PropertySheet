@@ -11,8 +11,6 @@ import java.awt.event.KeyListener;
 
 public class FloatEditor extends DefaultCellEditor implements TableCellEditor, KeyListener {
 
-    private static final long serialVersionUID = 3464531358342477564L;
-
     private FloatProperty property;
     private PropertySheet table;
 

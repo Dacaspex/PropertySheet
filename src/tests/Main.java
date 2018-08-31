@@ -1,10 +1,8 @@
 package tests;
 
 import com.dacaspex.propertysheet.PropertySheet;
-import com.dacaspex.propertysheet.property.BooleanProperty;
-import com.dacaspex.propertysheet.property.ColorProperty;
-import com.dacaspex.propertysheet.property.FloatProperty;
-import com.dacaspex.propertysheet.property.IntegerProperty;
+import com.dacaspex.propertysheet.event.PropertySheetUpdateListener;
+import com.dacaspex.propertysheet.property.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -73,6 +71,15 @@ public class Main {
             propertyTable.addProperty(prop3);
             propertyTable.addProperty(prop4);
 
+            propertyTable.addUpdateListener(new EventListener());
+
+        }
+    }
+
+    class EventListener implements PropertySheetUpdateListener {
+        @Override
+        public void onUpdate(Property property) {
+            System.out.println(property.getName() + " updated");
         }
     }
 }

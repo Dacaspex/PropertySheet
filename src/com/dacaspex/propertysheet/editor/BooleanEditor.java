@@ -5,10 +5,8 @@ import com.dacaspex.propertysheet.property.BooleanProperty;
 
 import javax.swing.*;
 import javax.swing.table.TableCellEditor;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class BooleanEditor extends DefaultCellEditor implements TableCellEditor, ActionListener {
+public class BooleanEditor extends DefaultCellEditor implements TableCellEditor {
 
     private static final long serialVersionUID = 3464531358342477564L;
 
@@ -23,12 +21,9 @@ public class BooleanEditor extends DefaultCellEditor implements TableCellEditor,
         this.property = property;
         this.table = table;
 
-        checkBox.addActionListener(this);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent event) {
-//        property.setValue(checkBox.isSelected());
-//        table.requestUpdate(false);
+        checkBox.addActionListener(e -> {
+            property.setValue(checkBox.isSelected());
+            // TODO: Fire update event
+        });
     }
 }
