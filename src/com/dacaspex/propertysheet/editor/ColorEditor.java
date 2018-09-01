@@ -9,8 +9,8 @@ import java.awt.*;
 
 public class ColorEditor extends DefaultCellEditor implements TableCellEditor {
 
-    private JButton delegate;
-    private ColorProperty property;
+    protected JButton delegate;
+    protected ColorProperty property;
 
     public ColorEditor(ColorProperty property, PropertySheet table) {
         super(new JTextField());
@@ -34,7 +34,7 @@ public class ColorEditor extends DefaultCellEditor implements TableCellEditor {
         return String.format("#%06x", property.getValue().getRGB() & 0x00FFFFFF);
     }
 
-    private void changeColor(Color color) {
+    protected void changeColor(Color color) {
         if (color != null) {
             property.setValue(color);
             delegate.setBackground(color);

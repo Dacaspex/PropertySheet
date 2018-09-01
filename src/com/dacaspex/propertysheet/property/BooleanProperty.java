@@ -1,6 +1,6 @@
 package com.dacaspex.propertysheet.property;
 
-import com.dacaspex.propertysheet.renderer.NullValidator;
+import com.dacaspex.propertysheet.validator.NullValidator;
 
 public class BooleanProperty extends AbstractProperty<Boolean> {
 

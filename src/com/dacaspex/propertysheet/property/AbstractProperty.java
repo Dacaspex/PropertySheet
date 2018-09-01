@@ -1,5 +1,6 @@
 package com.dacaspex.propertysheet.property;
 
+import com.dacaspex.propertysheet.validator.NullValidator;
 import com.dacaspex.propertysheet.validator.Validator;
 
 public class AbstractProperty<T> implements Property<T> {
@@ -15,11 +16,11 @@ public class AbstractProperty<T> implements Property<T> {
     }
 
     public AbstractProperty(T value) {
-        this("", value, null);
+        this("", value, new NullValidator());
     }
 
     public AbstractProperty(String name) {
-        this(name, null, null);
+        this(name, null, new NullValidator());
     }
 
     @Override
@@ -40,5 +41,9 @@ public class AbstractProperty<T> implements Property<T> {
     @Override
     public Validator getValidator() {
         return validator;
+    }
+
+    public void setValidator(Validator validator) {
+        this.validator = validator;
     }
 }

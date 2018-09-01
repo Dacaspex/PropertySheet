@@ -1,31 +1,25 @@
 package com.dacaspex.propertysheet.editor;
 
 import com.dacaspex.propertysheet.PropertySheet;
-import com.dacaspex.propertysheet.property.FloatProperty;
+import com.dacaspex.propertysheet.property.StringProperty;
 
 import javax.swing.*;
 import javax.swing.table.TableCellEditor;
-import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class FloatEditor extends DefaultCellEditor implements TableCellEditor, KeyListener {
+public class StringEditor extends DefaultCellEditor implements TableCellEditor, KeyListener {
 
-    private FloatProperty property;
+    private StringProperty property;
     private PropertySheet sheet;
 
-    public FloatEditor(FloatProperty property, PropertySheet sheet) {
+    public StringEditor(StringProperty property, PropertySheet sheet) {
         super(new JTextField());
 
         this.property = property;
         this.sheet = sheet;
 
         super.getComponent().addKeyListener(this);
-    }
-
-    @Override
-    public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-        return super.getTableCellEditorComponent(table, value, isSelected, row, column);
     }
 
     @Override
@@ -36,21 +30,20 @@ public class FloatEditor extends DefaultCellEditor implements TableCellEditor, K
     @Override
     public void keyReleased(KeyEvent event) {
 
+        // Get value from editor component
         JTextField textField = (JTextField) super.getComponent();
-        String value = (String) textField.getText();
+        String value = textField.getText();
 
+        // Validate input
         if (property.getValidator().validate(value)) {
-            property.setValue(Float.parseFloat(value));
+            property.setValue(value);
             textField.setBackground(sheet.getBackgroundColor());
 
+            // Dispatch event to indicate something happened
             sheet.dispatchUpdateEvent(property);
         } else {
             textField.setBackground(sheet.getInvalidColor());
         }
-
-        // TODO: Validate
-        // TODO: Fire update event
-
     }
 
     @Override
@@ -59,3 +52,4 @@ public class FloatEditor extends DefaultCellEditor implements TableCellEditor, K
     }
 
 }
+

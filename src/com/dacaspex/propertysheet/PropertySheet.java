@@ -90,6 +90,11 @@ public class PropertySheet extends JTable {
             editorController.addEditor(cursor, new ColorEditor((ColorProperty) property, this));
             renderers.put(cursor++, new ColorRenderer());
 
+        } else if (property instanceof StringProperty) {
+
+            propertySheetModel.addRow(new String[]{property.getName(), property.getValue().toString()});
+            editorController.addEditor(cursor++, new StringEditor((StringProperty) property, this));
+
         } else {
             // TODO: Error
         }

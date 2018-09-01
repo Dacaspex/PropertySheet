@@ -1,6 +1,4 @@
-package com.dacaspex.propertysheet.renderer;
-
-import com.dacaspex.propertysheet.validator.Validator;
+package com.dacaspex.propertysheet.validator;
 
 public class NullValidator implements Validator {
 
