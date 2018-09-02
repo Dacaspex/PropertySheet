@@ -1,7 +1,7 @@
 package tests;
 
 import com.dacaspex.propertysheet.PropertySheet;
-import com.dacaspex.propertysheet.event.PropertySheetUpdateListener;
+import com.dacaspex.propertysheet.event.PropertySheetEventListener;
 import com.dacaspex.propertysheet.property.*;
 import com.dacaspex.propertysheet.validator.StringValidator;
 
@@ -78,15 +78,14 @@ public class Main {
             propertyTable.addProperty(prop5);
             propertyTable.addProperty(prop6);
 
-            propertyTable.addUpdateListener(new EventListener());
-
+            propertyTable.addEventListener(new EventListener());
         }
     }
 
-    class EventListener implements PropertySheetUpdateListener {
+    class EventListener implements PropertySheetEventListener {
         @Override
-        public void onUpdate(Property property) {
-            System.out.println(property.getName() + " updated");
+        public void onPropertyUpdated(Property property) {
+            // TODO
         }
     }
 }

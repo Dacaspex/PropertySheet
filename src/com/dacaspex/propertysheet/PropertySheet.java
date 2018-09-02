@@ -1,7 +1,7 @@
 package com.dacaspex.propertysheet;
 
 import com.dacaspex.propertysheet.editor.*;
-import com.dacaspex.propertysheet.event.PropertySheetUpdateListener;
+import com.dacaspex.propertysheet.event.PropertySheetEventListener;
 import com.dacaspex.propertysheet.property.*;
 import com.dacaspex.propertysheet.renderer.BooleanRenderer;
 import com.dacaspex.propertysheet.renderer.ColorRenderer;
@@ -26,7 +26,7 @@ public class PropertySheet extends JTable {
     private HashMap<Integer, TableCellRenderer> renderers;
     private PropertySheetModel propertySheetModel;
 
-    private ArrayList<PropertySheetUpdateListener> listeners;
+    private ArrayList<PropertySheetEventListener> listeners;
 
     public PropertySheet() {
 
@@ -59,7 +59,7 @@ public class PropertySheet extends JTable {
         return invalidColor;
     }
 
-    public void addProperty(Property property) {
+    public <T> void addProperty(Property property) {
         properties.add(property);
 
         // TODO: The adding of renderes/editors should be redone to make sure elements can be deleted accordingly
@@ -67,17 +67,17 @@ public class PropertySheet extends JTable {
         if (property instanceof IntegerProperty) {
 
             propertySheetModel.addRow(new String[]{property.getName(), property.getValue().toString()});
-            editorController.addEditor(cursor++, new IntegerEditor((IntegerProperty) property, this));
+            editorController.addEditor(cursor++, new IntegerEditor(property, this));
 
         } else if (property instanceof FloatProperty) {
 
             propertySheetModel.addRow(new String[]{property.getName(), property.getValue().toString()});
-            editorController.addEditor(cursor++, new FloatEditor((FloatProperty) property, this));
+            editorController.addEditor(cursor++, new FloatEditor(property, this));
 
         } else if (property instanceof BooleanProperty) {
 
             propertySheetModel.addRow(new String[]{property.getName(), property.getValue().toString()});
-            editorController.addEditor(cursor, new BooleanEditor((BooleanProperty) property, this));
+            editorController.addEditor(cursor, new BooleanEditor(property, this));
             renderers.put(cursor++, new BooleanRenderer());
 
         } else if (property instanceof ColorProperty) {
@@ -87,7 +87,7 @@ public class PropertySheet extends JTable {
                     ((ColorProperty) property).getValue().getRGB() & 0x00FFFFFF
             );
             propertySheetModel.addRow(new String[]{property.getName(), color});
-            editorController.addEditor(cursor, new ColorEditor((ColorProperty) property, this));
+            editorController.addEditor(cursor, new ColorEditor(property, this));
             renderers.put(cursor++, new ColorRenderer());
 
         } else if (property instanceof StringProperty) {
@@ -110,15 +110,15 @@ public class PropertySheet extends JTable {
         return super.getCellRenderer(row, column);
     }
 
-    public void addUpdateListener(PropertySheetUpdateListener listener) {
-        listeners.add(listener);
+    public void addEventListener(PropertySheetEventListener eventListener) {
+        listeners.add(eventListener);
     }
 
-    public void removeUpdateListener(PropertySheetUpdateListener listener) {
-        listeners.remove(listener);
+    public void removeEventListener(PropertySheetEventListener eventListener) {
+        listeners.remove(eventListener);
     }
 
     public void dispatchUpdateEvent(Property property) {
-        listeners.forEach(l -> l.onUpdate(property));
+        listeners.forEach(l -> l.onPropertyUpdated(property));
     }
 }

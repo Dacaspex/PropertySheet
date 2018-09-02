@@ -2,8 +2,8 @@ package com.dacaspex.propertysheet.event;
 
 import com.dacaspex.propertysheet.property.Property;
 
-public interface PropertySheetUpdateListener {
+public interface PropertySheetEventListener {
 
-    public void onUpdate(Property property);
+    public void onPropertyUpdated(Property property);
 
 }

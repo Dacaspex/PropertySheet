@@ -12,7 +12,7 @@ public class ColorEditor extends DefaultCellEditor implements TableCellEditor {
     protected JButton delegate;
     protected Property<Color> property;
 
-    public ColorEditor(Property<Color> property, PropertySheet table) {
+    public ColorEditor(Property<Color> property, PropertySheet sheet) {
         super(new JTextField());
 
         this.property = property;
@@ -27,6 +27,7 @@ public class ColorEditor extends DefaultCellEditor implements TableCellEditor {
         delegate.addActionListener(e -> {
             Color color = JColorChooser.showDialog(delegate, "Choose colour", property.getValue());
             this.changeColor(color);
+            sheet.dispatchUpdateEvent(property);
         });
     }
 
@@ -38,6 +39,7 @@ public class ColorEditor extends DefaultCellEditor implements TableCellEditor {
         if (color != null) {
             property.setValue(color);
             delegate.setBackground(color);
+
         }
     }
 
