@@ -1,7 +1,7 @@
 package com.dacaspex.propertysheet.editor;
 
 import com.dacaspex.propertysheet.PropertySheet;
-import com.dacaspex.propertysheet.property.IntegerProperty;
+import com.dacaspex.propertysheet.property.Property;
 
 import javax.swing.*;
 import javax.swing.table.TableCellEditor;
@@ -10,10 +10,10 @@ import java.awt.event.KeyListener;
 
 public class IntegerEditor extends DefaultCellEditor implements TableCellEditor, KeyListener {
 
-    private IntegerProperty property;
-    private PropertySheet sheet;
+    protected Property<Integer> property;
+    protected PropertySheet sheet;
 
-    public IntegerEditor(IntegerProperty property, PropertySheet sheet) {
+    public IntegerEditor(Property<Integer> property, PropertySheet sheet) {
         super(new JTextField());
 
         this.property = property;

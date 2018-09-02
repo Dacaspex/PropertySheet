@@ -1,7 +1,7 @@
 package com.dacaspex.propertysheet.editor;
 
 import com.dacaspex.propertysheet.PropertySheet;
-import com.dacaspex.propertysheet.property.LongProperty;
+import com.dacaspex.propertysheet.property.Property;
 
 import javax.swing.*;
 import javax.swing.table.TableCellEditor;
@@ -10,10 +10,10 @@ import java.awt.event.KeyListener;
 
 public class LongEditor extends DefaultCellEditor implements TableCellEditor, KeyListener {
 
-    private LongProperty property;
-    private PropertySheet sheet;
+    protected Property<Long> property;
+    protected PropertySheet sheet;
 
-    public LongEditor(LongProperty property, PropertySheet sheet) {
+    public LongEditor(Property<Long> property, PropertySheet sheet) {
         super(new JTextField());
 
         this.property = property;

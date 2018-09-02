@@ -1,7 +1,7 @@
 package com.dacaspex.propertysheet.editor;
 
 import com.dacaspex.propertysheet.PropertySheet;
-import com.dacaspex.propertysheet.property.StringProperty;
+import com.dacaspex.propertysheet.property.Property;
 
 import javax.swing.*;
 import javax.swing.table.TableCellEditor;
@@ -10,10 +10,10 @@ import java.awt.event.KeyListener;
 
 public class StringEditor extends DefaultCellEditor implements TableCellEditor, KeyListener {
 
-    private StringProperty property;
-    private PropertySheet sheet;
+    protected Property<String> property;
+    protected PropertySheet sheet;
 
-    public StringEditor(StringProperty property, PropertySheet sheet) {
+    public StringEditor(Property<String> property, PropertySheet sheet) {
         super(new JTextField());
 
         this.property = property;

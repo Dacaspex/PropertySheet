@@ -1,7 +1,7 @@
 package com.dacaspex.propertysheet.editor;
 
 import com.dacaspex.propertysheet.PropertySheet;
-import com.dacaspex.propertysheet.property.DoubleProperty;
+import com.dacaspex.propertysheet.property.Property;
 
 import javax.swing.*;
 import javax.swing.table.TableCellEditor;
@@ -10,10 +10,10 @@ import java.awt.event.KeyListener;
 
 public class DoubleEditor extends DefaultCellEditor implements TableCellEditor, KeyListener {
 
-    private DoubleProperty property;
+    private Property<Double> property;
     private PropertySheet sheet;
 
-    public DoubleEditor(DoubleProperty property, PropertySheet sheet) {
+    public DoubleEditor(Property<Double> property, PropertySheet sheet) {
         super(new JTextField());
 
         this.property = property;

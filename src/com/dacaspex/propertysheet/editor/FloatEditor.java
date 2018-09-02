@@ -1,7 +1,7 @@
 package com.dacaspex.propertysheet.editor;
 
 import com.dacaspex.propertysheet.PropertySheet;
-import com.dacaspex.propertysheet.property.FloatProperty;
+import com.dacaspex.propertysheet.property.Property;
 
 import javax.swing.*;
 import javax.swing.table.TableCellEditor;
@@ -11,10 +11,10 @@ import java.awt.event.KeyListener;
 
 public class FloatEditor extends DefaultCellEditor implements TableCellEditor, KeyListener {
 
-    private FloatProperty property;
-    private PropertySheet sheet;
+    protected Property<Float> property;
+    protected PropertySheet sheet;
 
-    public FloatEditor(FloatProperty property, PropertySheet sheet) {
+    public FloatEditor(Property<Float> property, PropertySheet sheet) {
         super(new JTextField());
 
         this.property = property;
@@ -47,10 +47,6 @@ public class FloatEditor extends DefaultCellEditor implements TableCellEditor, K
         } else {
             textField.setBackground(sheet.getInvalidColor());
         }
-
-        // TODO: Validate
-        // TODO: Fire update event
-
     }
 
     @Override

@@ -1,7 +1,7 @@
 package com.dacaspex.propertysheet.editor;
 
 import com.dacaspex.propertysheet.PropertySheet;
-import com.dacaspex.propertysheet.property.ColorProperty;
+import com.dacaspex.propertysheet.property.Property;
 
 import javax.swing.*;
 import javax.swing.table.TableCellEditor;
@@ -10,9 +10,9 @@ import java.awt.*;
 public class ColorEditor extends DefaultCellEditor implements TableCellEditor {
 
     protected JButton delegate;
-    protected ColorProperty property;
+    protected Property<Color> property;
 
-    public ColorEditor(ColorProperty property, PropertySheet table) {
+    public ColorEditor(Property<Color> property, PropertySheet table) {
         super(new JTextField());
 
         this.property = property;
