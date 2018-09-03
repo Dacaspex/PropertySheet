@@ -2,6 +2,7 @@ package com.dacaspex.propertysheet;
 
 import com.dacaspex.propertysheet.editor.*;
 import com.dacaspex.propertysheet.event.PropertySheetEventListener;
+import com.dacaspex.propertysheet.exception.PropertyNotSupportedException;
 import com.dacaspex.propertysheet.property.*;
 import com.dacaspex.propertysheet.renderer.BooleanRenderer;
 import com.dacaspex.propertysheet.renderer.ColorRenderer;
@@ -59,44 +60,53 @@ public class PropertySheet extends JTable {
         return invalidColor;
     }
 
+    public void addProperty(
+            Property property,
+            String display,
+            PropertySheetCellEditor editor,
+            TableCellRenderer renderer
+    ) {
+        propertySheetModel.addRow(new String[]{property.getName(), display});
+        editorController.addEditor(cursor, editor);
+
+        if (renderer != null) {
+            renderers.put(cursor, renderer);
+        }
+
+        cursor++;
+    }
+
+    public void addProperty(Property property, PropertySheetCellEditor editor, TableCellRenderer renderer) {
+        addProperty(property, property.getValue().toString(), editor, renderer);
+    }
+
+    public void addProperty(Property property, String display, PropertySheetCellEditor editor) {
+        addProperty(property, display, editor, null);
+    }
+
+    public void addProperty(Property property, PropertySheetCellEditor editor) {
+        addProperty(property, property.getValue().toString(), editor, null);
+    }
+
     public void addProperty(Property property) {
         properties.add(property);
 
-        // TODO: The adding of renderes/editors should be redone to make sure elements can be deleted accordingly
-
         if (property instanceof IntegerProperty) {
-
-            propertySheetModel.addRow(new String[]{property.getName(), property.getValue().toString()});
-            editorController.addEditor(cursor++, new IntegerEditor(property, this));
-
+            addProperty(property, new IntegerEditor(property, this));
         } else if (property instanceof FloatProperty) {
-
-            propertySheetModel.addRow(new String[]{property.getName(), property.getValue().toString()});
-            editorController.addEditor(cursor++, new FloatEditor(property, this));
-
+            addProperty(property, new FloatEditor(property, this));
         } else if (property instanceof BooleanProperty) {
-
-            propertySheetModel.addRow(new String[]{property.getName(), property.getValue().toString()});
-            editorController.addEditor(cursor, new BooleanEditor(property, this));
-            renderers.put(cursor++, new BooleanRenderer());
-
+            addProperty(property, new BooleanEditor(property, this), new BooleanRenderer());
         } else if (property instanceof ColorProperty) {
-
             String color = String.format(
                     "#%06x",
                     ((ColorProperty) property).getValue().getRGB() & 0x00FFFFFF
             );
-            propertySheetModel.addRow(new String[]{property.getName(), color});
-            editorController.addEditor(cursor, new ColorEditor(property, this));
-            renderers.put(cursor++, new ColorRenderer());
-
+            addProperty(property, color, new ColorEditor(property, this), new ColorRenderer());
         } else if (property instanceof StringProperty) {
-
-            propertySheetModel.addRow(new String[]{property.getName(), property.getValue().toString()});
-            editorController.addEditor(cursor++, new StringEditor((StringProperty) property, this));
-
+            addProperty(property, new StringEditor(property, this));
         } else {
-            // TODO: Error
+            throw new PropertyNotSupportedException(property);
         }
     }
 

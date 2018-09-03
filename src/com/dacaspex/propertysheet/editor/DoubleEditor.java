@@ -4,11 +4,10 @@ import com.dacaspex.propertysheet.PropertySheet;
 import com.dacaspex.propertysheet.property.Property;
 
 import javax.swing.*;
-import javax.swing.table.TableCellEditor;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class DoubleEditor extends PropertySheetCellEditor implements TableCellEditor, KeyListener {
+public class DoubleEditor extends PropertySheetCellEditor implements KeyListener {
 
     private Property<Double> property;
 

@@ -4,9 +4,8 @@ import com.dacaspex.propertysheet.PropertySheet;
 import com.dacaspex.propertysheet.property.Property;
 
 import javax.swing.*;
-import javax.swing.table.TableCellEditor;
 
-public class BooleanEditor extends PropertySheetCellEditor implements TableCellEditor {
+public class BooleanEditor extends PropertySheetCellEditor {
 
     private JCheckBox checkBox;
 

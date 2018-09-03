@@ -4,10 +4,9 @@ import com.dacaspex.propertysheet.PropertySheet;
 import com.dacaspex.propertysheet.property.Property;
 
 import javax.swing.*;
-import javax.swing.table.TableCellEditor;
 import java.awt.*;
 
-public class ColorEditor extends PropertySheetCellEditor implements TableCellEditor {
+public class ColorEditor extends PropertySheetCellEditor {
 
     protected JButton delegate;
     protected Property<Color> property;
@@ -39,7 +38,6 @@ public class ColorEditor extends PropertySheetCellEditor implements TableCellEdi
         if (color != null) {
             property.setValue(color);
             delegate.setBackground(color);
-
         }
     }
 

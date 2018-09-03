@@ -11,8 +11,14 @@ public class BooleanRenderer extends JCheckBox implements TableCellRenderer {
     }
 
     @Override
-    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
-                                                   int row, int column) {
+    public Component getTableCellRendererComponent(
+            JTable table,
+            Object value,
+            boolean isSelected,
+            boolean hasFocus,
+            int row,
+            int column
+    ) {
 
         if (value.toString().equals("true")) {
             this.setSelected(true);
@@ -25,5 +31,4 @@ public class BooleanRenderer extends JCheckBox implements TableCellRenderer {
         return this;
 
     }
-
 }

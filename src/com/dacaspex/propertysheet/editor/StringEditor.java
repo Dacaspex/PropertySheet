@@ -8,7 +8,7 @@ import javax.swing.table.TableCellEditor;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class StringEditor extends PropertySheetCellEditor implements TableCellEditor, KeyListener {
+public class StringEditor extends PropertySheetCellEditor implements KeyListener {
 
     protected Property<String> property;
 

@@ -4,12 +4,11 @@ import com.dacaspex.propertysheet.PropertySheet;
 import com.dacaspex.propertysheet.property.Property;
 
 import javax.swing.*;
-import javax.swing.table.TableCellEditor;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class FloatEditor extends PropertySheetCellEditor implements TableCellEditor, KeyListener {
+public class FloatEditor extends PropertySheetCellEditor implements KeyListener {
 
     protected Property<Float> property;
 
