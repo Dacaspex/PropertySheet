@@ -8,16 +8,14 @@ import javax.swing.table.TableCellEditor;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class DoubleEditor extends DefaultCellEditor implements TableCellEditor, KeyListener {
+public class DoubleEditor extends PropertySheetCellEditor implements TableCellEditor, KeyListener {
 
     private Property<Double> property;
-    private PropertySheet sheet;
 
     public DoubleEditor(Property<Double> property, PropertySheet sheet) {
-        super(new JTextField());
+        super(property, sheet, new JTextField());
 
         this.property = property;
-        this.sheet = sheet;
 
         super.getComponent().addKeyListener(this);
     }

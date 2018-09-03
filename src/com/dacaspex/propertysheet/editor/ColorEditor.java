@@ -7,13 +7,13 @@ import javax.swing.*;
 import javax.swing.table.TableCellEditor;
 import java.awt.*;
 
-public class ColorEditor extends DefaultCellEditor implements TableCellEditor {
+public class ColorEditor extends PropertySheetCellEditor implements TableCellEditor {
 
     protected JButton delegate;
     protected Property<Color> property;
 
     public ColorEditor(Property<Color> property, PropertySheet sheet) {
-        super(new JTextField());
+        super(property, sheet, new JTextField());
 
         this.property = property;
         this.delegate = new JButton() {

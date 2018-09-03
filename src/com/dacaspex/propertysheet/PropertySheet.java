@@ -59,7 +59,7 @@ public class PropertySheet extends JTable {
         return invalidColor;
     }
 
-    public <T> void addProperty(Property property) {
+    public void addProperty(Property property) {
         properties.add(property);
 
         // TODO: The adding of renderes/editors should be redone to make sure elements can be deleted accordingly

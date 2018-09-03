@@ -9,16 +9,14 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class FloatEditor extends DefaultCellEditor implements TableCellEditor, KeyListener {
+public class FloatEditor extends PropertySheetCellEditor implements TableCellEditor, KeyListener {
 
     protected Property<Float> property;
-    protected PropertySheet sheet;
 
     public FloatEditor(Property<Float> property, PropertySheet sheet) {
-        super(new JTextField());
+        super(property, sheet, new JTextField());
 
         this.property = property;
-        this.sheet = sheet;
 
         super.getComponent().addKeyListener(this);
     }
