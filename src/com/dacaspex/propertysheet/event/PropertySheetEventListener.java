@@ -6,4 +6,5 @@ public interface PropertySheetEventListener {
 
     public void onPropertyUpdated(Property property);
 
+    public void onPropertyAdded(Property property);
 }

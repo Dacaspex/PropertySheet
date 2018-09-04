@@ -74,6 +74,9 @@ public class PropertySheet extends JTable {
         }
 
         cursor++;
+
+        // Update event listeners
+        listeners.forEach(l -> l.onPropertyAdded(property));
     }
 
     public void addProperty(Property property, PropertySheetCellEditor editor, TableCellRenderer renderer) {

@@ -1,7 +1,7 @@
 package tests;
 
 import com.dacaspex.propertysheet.PropertySheet;
-import com.dacaspex.propertysheet.event.PropertySheetEventListener;
+import com.dacaspex.propertysheet.event.PropertySheetEventAdapter;
 import com.dacaspex.propertysheet.property.*;
 import com.dacaspex.propertysheet.validator.StringValidator;
 
@@ -82,7 +82,7 @@ public class Main {
         }
     }
 
-    class EventListener implements PropertySheetEventListener {
+    class EventListener extends PropertySheetEventAdapter {
         @Override
         public void onPropertyUpdated(Property property) {
             // TODO
