@@ -16,7 +16,7 @@ public class BooleanEditor extends PropertySheetCellEditor {
 
         checkBox.addActionListener(e -> {
             property.setValue(checkBox.isSelected());
-            sheet.dispatchUpdateEvent(property);
+            eventDispatcher.dispatchUpdateEvent(property);
         });
     }
 }

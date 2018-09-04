@@ -4,7 +4,6 @@ import com.dacaspex.propertysheet.PropertySheet;
 import com.dacaspex.propertysheet.property.Property;
 
 import javax.swing.*;
-import javax.swing.table.TableCellEditor;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -38,7 +37,7 @@ public class StringEditor extends PropertySheetCellEditor implements KeyListener
             textField.setBackground(sheet.getBackgroundColor());
 
             // Dispatch event to indicate something happened
-            sheet.dispatchUpdateEvent(property);
+            eventDispatcher.dispatchUpdateEvent(property);
         } else {
             textField.setBackground(sheet.getInvalidColor());
         }

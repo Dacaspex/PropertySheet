@@ -40,7 +40,7 @@ public class FloatEditor extends PropertySheetCellEditor implements KeyListener 
             property.setValue(Float.parseFloat(value));
             textField.setBackground(sheet.getBackgroundColor());
 
-            sheet.dispatchUpdateEvent(property);
+            eventDispatcher.dispatchUpdateEvent(property);
         } else {
             textField.setBackground(sheet.getInvalidColor());
         }

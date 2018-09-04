@@ -1,8 +1,8 @@
 package com.dacaspex.propertysheet.editor;
 
 import com.dacaspex.propertysheet.PropertySheet;
-import com.dacaspex.propertysheet.property.selection.SelectionProperty;
 import com.dacaspex.propertysheet.property.selection.Item;
+import com.dacaspex.propertysheet.property.selection.SelectionProperty;
 
 import javax.swing.*;
 import java.awt.event.ItemEvent;
@@ -42,8 +42,7 @@ public class SelectionEditor extends PropertySheetCellEditor implements ItemList
 
         if (event.getStateChange() == ItemEvent.SELECTED) {
             property.setValue(((Item<String>) comboBox.getSelectedItem()).getValue());
-            System.out.println(property.getValue());
-            sheet.dispatchUpdateEvent(property);
+            eventDispatcher.dispatchUpdateEvent(property);
         }
 
     }

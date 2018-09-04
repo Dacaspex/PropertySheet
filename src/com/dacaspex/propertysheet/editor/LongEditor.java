@@ -37,7 +37,7 @@ public class LongEditor extends PropertySheetCellEditor implements KeyListener {
             textField.setBackground(sheet.getBackgroundColor());
 
             // Dispatch event to indicate something happened
-            sheet.dispatchUpdateEvent(property);
+            eventDispatcher.dispatchUpdateEvent(property);
         } else {
             textField.setBackground(sheet.getInvalidColor());
         }

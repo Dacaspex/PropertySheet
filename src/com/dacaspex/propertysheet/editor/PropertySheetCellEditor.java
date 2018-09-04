@@ -1,8 +1,8 @@
 package com.dacaspex.propertysheet.editor;
 
 import com.dacaspex.propertysheet.PropertySheet;
+import com.dacaspex.propertysheet.event.EventDispatcher;
 import com.dacaspex.propertysheet.property.Property;
-import com.dacaspex.propertysheet.property.selection.Item;
 
 import javax.swing.*;
 import javax.swing.table.TableCellEditor;
@@ -10,6 +10,8 @@ import javax.swing.table.TableCellEditor;
 public class PropertySheetCellEditor extends DefaultCellEditor implements TableCellEditor {
 
     protected PropertySheet sheet;
+
+    protected static EventDispatcher eventDispatcher;
 
     public PropertySheetCellEditor(Property property, PropertySheet sheet) {
         super(new JTextField());
@@ -33,5 +35,9 @@ public class PropertySheetCellEditor extends DefaultCellEditor implements TableC
         super(comboBox);
 
         this.sheet = sheet;
+    }
+
+    public static void setEventDispatcher(EventDispatcher eventDispatcher) {
+        PropertySheetCellEditor.eventDispatcher = eventDispatcher;
     }
 }

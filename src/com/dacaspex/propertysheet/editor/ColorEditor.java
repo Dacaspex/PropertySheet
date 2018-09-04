@@ -26,7 +26,7 @@ public class ColorEditor extends PropertySheetCellEditor {
         delegate.addActionListener(e -> {
             Color color = JColorChooser.showDialog(delegate, "Choose colour", property.getValue());
             this.changeColor(color);
-            sheet.dispatchUpdateEvent(property);
+            eventDispatcher.dispatchUpdateEvent(property);
         });
     }
 

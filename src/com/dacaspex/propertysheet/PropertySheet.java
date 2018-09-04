@@ -1,6 +1,7 @@
 package com.dacaspex.propertysheet;
 
 import com.dacaspex.propertysheet.editor.*;
+import com.dacaspex.propertysheet.event.EventDispatcher;
 import com.dacaspex.propertysheet.event.PropertySheetEventListener;
 import com.dacaspex.propertysheet.exception.PropertyNotSupportedException;
 import com.dacaspex.propertysheet.property.*;
@@ -11,7 +12,6 @@ import com.dacaspex.propertysheet.renderer.ColorRenderer;
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class PropertySheet extends JTable {
@@ -22,13 +22,10 @@ public class PropertySheet extends JTable {
     private int rowHeight;
     private int cursor;
 
-    private ArrayList<Property> properties;
-
     private EditorController editorController;
     private HashMap<Integer, TableCellRenderer> renderers;
     private PropertySheetModel propertySheetModel;
-
-    private ArrayList<PropertySheetEventListener> listeners;
+    private EventDispatcher eventDispatcher;
 
     public PropertySheet() {
 
@@ -40,11 +37,11 @@ public class PropertySheet extends JTable {
 
         // Initialise required variables
         this.cursor = 0;
-        this.properties = new ArrayList<>();
         this.editorController = new EditorController();
         this.renderers = new HashMap<>();
         this.propertySheetModel = new PropertySheetModel(headers);
-        this.listeners = new ArrayList<>();
+        this.eventDispatcher = new EventDispatcher();
+        PropertySheetCellEditor.setEventDispatcher(eventDispatcher);
 
         // Set table properties
         setModel(propertySheetModel);
@@ -75,9 +72,7 @@ public class PropertySheet extends JTable {
         }
 
         cursor++;
-
-        // Update event listeners
-        listeners.forEach(l -> l.onPropertyAdded(property));
+        eventDispatcher.dispatchPropertyAddedEvent(property);
     }
 
     public void addProperty(Property property, PropertySheetCellEditor editor, TableCellRenderer renderer) {
@@ -93,8 +88,6 @@ public class PropertySheet extends JTable {
     }
 
     public void addProperty(Property property) {
-        properties.add(property);
-
         if (property instanceof IntegerProperty) {
             addProperty(property, new IntegerEditor(property, this));
         } else if (property instanceof FloatProperty) {
@@ -131,14 +124,10 @@ public class PropertySheet extends JTable {
     }
 
     public void addEventListener(PropertySheetEventListener eventListener) {
-        listeners.add(eventListener);
+        eventDispatcher.addEventListener(eventListener);
     }
 
     public void removeEventListener(PropertySheetEventListener eventListener) {
-        listeners.remove(eventListener);
-    }
-
-    public void dispatchUpdateEvent(Property property) {
-        listeners.forEach(l -> l.onPropertyUpdated(property));
+        eventDispatcher.removeEventListener(eventListener);
     }
 }
