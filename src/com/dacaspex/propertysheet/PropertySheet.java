@@ -4,6 +4,7 @@ import com.dacaspex.propertysheet.editor.*;
 import com.dacaspex.propertysheet.event.PropertySheetEventListener;
 import com.dacaspex.propertysheet.exception.PropertyNotSupportedException;
 import com.dacaspex.propertysheet.property.*;
+import com.dacaspex.propertysheet.property.selection.SelectionProperty;
 import com.dacaspex.propertysheet.renderer.BooleanRenderer;
 import com.dacaspex.propertysheet.renderer.ColorRenderer;
 
@@ -108,6 +109,12 @@ public class PropertySheet extends JTable {
             addProperty(property, color, new ColorEditor(property, this), new ColorRenderer());
         } else if (property instanceof StringProperty) {
             addProperty(property, new StringEditor(property, this));
+        } else if (property instanceof SelectionProperty) {
+            addProperty(
+                    property,
+                    ((SelectionProperty) property).getItems().get(0).toString(),
+                    new SelectionEditor((SelectionProperty) property, this)
+            );
         } else {
             throw new PropertyNotSupportedException(property);
         }

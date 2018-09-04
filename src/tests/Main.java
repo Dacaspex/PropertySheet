@@ -3,10 +3,14 @@ package tests;
 import com.dacaspex.propertysheet.PropertySheet;
 import com.dacaspex.propertysheet.event.PropertySheetEventAdapter;
 import com.dacaspex.propertysheet.property.*;
+import com.dacaspex.propertysheet.property.selection.Item;
+import com.dacaspex.propertysheet.property.selection.SelectionProperty;
 import com.dacaspex.propertysheet.validator.StringValidator;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Main {
 
@@ -69,6 +73,13 @@ public class Main {
             StringProperty prop6 = new StringProperty("String 2", "test", new StringValidator(
                     new String[]{"test", "test 2", "foo"}
             ));
+            SelectionProperty prop7 = new SelectionProperty(
+                    "Selection",
+                    new ArrayList<>(Arrays.asList(
+                            new Item<>(new TestItem(), "Item 1"),
+                            new Item<>(new TestItem(), "Item 2")
+                    ))
+            );
 
             propertyTable = new PropertySheet();
             propertyTable.addProperty(prop1);
@@ -77,6 +88,7 @@ public class Main {
             propertyTable.addProperty(prop4);
             propertyTable.addProperty(prop5);
             propertyTable.addProperty(prop6);
+            propertyTable.addProperty(prop7);
 
             propertyTable.addEventListener(new EventListener());
         }
@@ -87,5 +99,8 @@ public class Main {
         public void onPropertyUpdated(Property property) {
             // TODO
         }
+    }
+
+    class TestItem {
     }
 }

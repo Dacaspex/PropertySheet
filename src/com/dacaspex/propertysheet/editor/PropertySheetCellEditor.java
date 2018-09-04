@@ -2,6 +2,7 @@ package com.dacaspex.propertysheet.editor;
 
 import com.dacaspex.propertysheet.PropertySheet;
 import com.dacaspex.propertysheet.property.Property;
+import com.dacaspex.propertysheet.property.selection.Item;
 
 import javax.swing.*;
 import javax.swing.table.TableCellEditor;
