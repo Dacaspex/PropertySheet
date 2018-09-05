@@ -4,6 +4,9 @@ import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 
+/**
+ * Renders a color for the color property
+ */
 public class ColorRenderer extends JPanel implements TableCellRenderer {
 
     public ColorRenderer() {

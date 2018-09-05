@@ -1,5 +1,8 @@
 package com.dacaspex.propertysheet.validator;
 
+/**
+ * Default string validator implementation
+ */
 public class StringValidator implements Validator {
 
     protected String[] options;

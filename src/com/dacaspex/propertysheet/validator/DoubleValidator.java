@@ -1,5 +1,8 @@
 package com.dacaspex.propertysheet.validator;
 
+/**
+ * Default implementation to validate double objects
+ */
 public class DoubleValidator implements Validator {
 
     @Override

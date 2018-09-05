@@ -1,5 +1,8 @@
 package com.dacaspex.propertysheet.validator;
 
+/**
+ * Default implementation to validate float objects
+ */
 public class FloatValidator implements Validator {
 
     @Override

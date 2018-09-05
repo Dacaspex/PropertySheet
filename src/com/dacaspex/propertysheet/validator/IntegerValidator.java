@@ -1,5 +1,8 @@
 package com.dacaspex.propertysheet.validator;
 
+/**
+ * Default implementation to validate integer objects
+ */
 public class IntegerValidator implements Validator {
 
     protected int lowerBound;

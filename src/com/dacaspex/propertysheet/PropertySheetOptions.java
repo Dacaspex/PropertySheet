@@ -2,6 +2,9 @@ package com.dacaspex.propertysheet;
 
 import java.awt.*;
 
+/**
+ * Cosmetic options for the property sheet
+ */
 public class PropertySheetOptions {
 
     private String[] headers;
@@ -9,6 +12,9 @@ public class PropertySheetOptions {
     private Color invalidColor;
     private int rowHeight;
 
+    /**
+     * Constructs a default option set
+     */
     public PropertySheetOptions() {
         this.headers = new String[]{"Property", "value"};
         this.backgroundColor = new Color(255, 255, 255);

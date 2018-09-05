@@ -3,7 +3,12 @@ package com.dacaspex.propertysheet.property;
 import com.dacaspex.propertysheet.validator.NullValidator;
 import com.dacaspex.propertysheet.validator.Validator;
 
-public class AbstractProperty<T> implements Property<T> {
+/**
+ * Abstract property implementation
+ *
+ * @param <T>
+ */
+public abstract class AbstractProperty<T> implements Property<T> {
 
     protected T value;
     protected String name;
@@ -43,6 +48,11 @@ public class AbstractProperty<T> implements Property<T> {
         return validator;
     }
 
+    /**
+     * Sets the validator for this object
+     *
+     * @param validator Validator
+     */
     public void setValidator(Validator validator) {
         this.validator = validator;
     }

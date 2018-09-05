@@ -1,5 +1,8 @@
 package com.dacaspex.propertysheet.validator;
 
+/**
+ * Default implementation to validate long objects
+ */
 public class LongValidator implements Validator {
 
     @Override

@@ -22,6 +22,9 @@ public class PropertySheet extends JTable {
     private PropertySheetModel propertySheetModel;
     private EventDispatcher eventDispatcher;
 
+    /**
+     * @param options Options object for the property sheet
+     */
     public PropertySheet(PropertySheetOptions options) {
 
         // Set options
@@ -46,6 +49,14 @@ public class PropertySheet extends JTable {
         return options;
     }
 
+    /**
+     * Add a property to the property sheet
+     *
+     * @param property Property to add
+     * @param display  Display string
+     * @param editor   Editor for the property
+     * @param renderer Renderer for the property. Leave null if not necessary
+     */
     public void addProperty(
             Property property,
             String display,
@@ -63,18 +74,38 @@ public class PropertySheet extends JTable {
         eventDispatcher.dispatchPropertyAddedEvent(property);
     }
 
+    /**
+     * @param property Property to add
+     * @param editor   Editor for the property
+     * @param renderer Renderer for the property
+     */
     public void addProperty(Property property, PropertySheetCellEditor editor, TableCellRenderer renderer) {
         addProperty(property, property.getValue().toString(), editor, renderer);
     }
 
+    /**
+     * @param property Property to add
+     * @param display  Display string
+     * @param editor   Editor for the property
+     */
     public void addProperty(Property property, String display, PropertySheetCellEditor editor) {
         addProperty(property, display, editor, null);
     }
 
+    /**
+     * @param property Property to add
+     * @param editor   Editor for the property
+     */
     public void addProperty(Property property, PropertySheetCellEditor editor) {
         addProperty(property, property.getValue().toString(), editor, null);
     }
 
+    /**
+     * Adds a default known property to the property sheet
+     *
+     * @param property Property to add. Must be an instance of the properties in this library
+     * @throws PropertyNotSupportedException If property is not known
+     */
     public void addProperty(Property property) {
         if (property instanceof IntegerProperty) {
             addProperty(property, new IntegerEditor(property, this));

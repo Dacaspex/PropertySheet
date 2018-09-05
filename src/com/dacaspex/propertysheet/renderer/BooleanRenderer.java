@@ -4,6 +4,9 @@ import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 
+/**
+ * Renders a checkbox for a boolean property
+ */
 public class BooleanRenderer extends JCheckBox implements TableCellRenderer {
 
     public BooleanRenderer() {
