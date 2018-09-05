@@ -6,7 +6,11 @@ import com.dacaspex.propertysheet.event.PropertySheetEventAdapter;
 import com.dacaspex.propertysheet.property.*;
 import com.dacaspex.propertysheet.property.selection.Item;
 import com.dacaspex.propertysheet.property.selection.SelectionProperty;
+import com.dacaspex.propertysheet.validator.CompoundValidator;
 import com.dacaspex.propertysheet.validator.StringValidator;
+import com.dacaspex.propertysheet.validator.integer.IntegerParityValidator;
+import com.dacaspex.propertysheet.validator.integer.IntegerRangeValidator;
+import com.dacaspex.propertysheet.validator.integer.IntegerValidator;
 
 import javax.swing.*;
 import java.awt.*;
@@ -67,6 +71,15 @@ public class Main {
         public void buildPropertyTable() {
 
             IntegerProperty prop1 = new IntegerProperty("Iterations", 2);
+            IntegerProperty prop11 = new IntegerProperty(
+                    "Integer",
+                    2,
+                    new CompoundValidator(
+                            new IntegerValidator(),
+                            new IntegerParityValidator(true),
+                            new IntegerRangeValidator(10, 20)
+                    )
+            );
             ColorProperty prop2 = new ColorProperty("Color", Color.BLUE);
             BooleanProperty prop3 = new BooleanProperty("Boolean", true);
             FloatProperty prop4 = new FloatProperty("Float", 1.2f);
@@ -84,6 +97,7 @@ public class Main {
 
             propertyTable = new PropertySheet(new PropertySheetOptions());
             propertyTable.addProperty(prop1);
+            propertyTable.addProperty(prop11);
             propertyTable.addProperty(prop2);
             propertyTable.addProperty(prop3);
             propertyTable.addProperty(prop4);

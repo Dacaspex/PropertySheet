@@ -1,6 +1,6 @@
 package com.dacaspex.propertysheet.property;
 
-import com.dacaspex.propertysheet.validator.IntegerValidator;
+import com.dacaspex.propertysheet.validator.integer.IntegerValidator;
 import com.dacaspex.propertysheet.validator.Validator;
 
 public class IntegerProperty extends AbstractProperty<Integer> {
