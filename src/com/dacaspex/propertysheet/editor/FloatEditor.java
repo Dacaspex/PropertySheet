@@ -38,11 +38,11 @@ public class FloatEditor extends PropertySheetCellEditor implements KeyListener 
 
         if (property.getValidator().validate(value)) {
             property.setValue(Float.parseFloat(value));
-            textField.setBackground(sheet.getBackgroundColor());
+            textField.setBackground(sheet.getOptions().getBackgroundColor());
 
             eventDispatcher.dispatchUpdateEvent(property);
         } else {
-            textField.setBackground(sheet.getInvalidColor());
+            textField.setBackground(sheet.getOptions().getInvalidColor());
         }
     }
 

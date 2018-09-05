@@ -11,51 +11,39 @@ import com.dacaspex.propertysheet.renderer.ColorRenderer;
 
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
-import java.awt.*;
 import java.util.HashMap;
 
 public class PropertySheet extends JTable {
 
-    private String[] headers;
-    private Color backgroundColor;
-    private Color invalidColor;
-    private int rowHeight;
     private int cursor;
-
+    private PropertySheetOptions options;
     private EditorController editorController;
     private HashMap<Integer, TableCellRenderer> renderers;
     private PropertySheetModel propertySheetModel;
     private EventDispatcher eventDispatcher;
 
-    public PropertySheet() {
+    public PropertySheet(PropertySheetOptions options) {
 
-        // Set cosmetics
-        this.headers = new String[]{"Property", "value"};
-        this.backgroundColor = Color.WHITE;
-        this.invalidColor = new Color(255, 114, 114);
-        this.rowHeight = 30;
+        // Set options
+        this.options = options;
 
         // Initialise required variables
         this.cursor = 0;
         this.editorController = new EditorController();
         this.renderers = new HashMap<>();
-        this.propertySheetModel = new PropertySheetModel(headers);
+        this.propertySheetModel = new PropertySheetModel(options.getHeaders());
         this.eventDispatcher = new EventDispatcher();
         PropertySheetCellEditor.setEventDispatcher(eventDispatcher);
 
         // Set table properties
         setModel(propertySheetModel);
         getColumnModel().getColumn(1).setCellEditor(editorController);
-        setRowHeight(rowHeight);
+        setRowHeight(options.getRowHeight());
         getTableHeader().setReorderingAllowed(false);
     }
 
-    public Color getBackgroundColor() {
-        return backgroundColor;
-    }
-
-    public Color getInvalidColor() {
-        return invalidColor;
+    public PropertySheetOptions getOptions() {
+        return options;
     }
 
     public void addProperty(

@@ -34,12 +34,12 @@ public class DoubleEditor extends PropertySheetCellEditor implements KeyListener
         // Validate input
         if (property.getValidator().validate(value)) {
             property.setValue(Double.parseDouble(value));
-            textField.setBackground(sheet.getBackgroundColor());
+            textField.setBackground(sheet.getOptions().getBackgroundColor());
 
             // Dispatch event to indicate something happened
             eventDispatcher.dispatchUpdateEvent(property);
         } else {
-            textField.setBackground(sheet.getInvalidColor());
+            textField.setBackground(sheet.getOptions().getInvalidColor());
         }
     }
 

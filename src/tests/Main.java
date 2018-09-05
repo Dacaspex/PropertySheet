@@ -1,6 +1,7 @@
 package tests;
 
 import com.dacaspex.propertysheet.PropertySheet;
+import com.dacaspex.propertysheet.PropertySheetOptions;
 import com.dacaspex.propertysheet.event.PropertySheetEventAdapter;
 import com.dacaspex.propertysheet.property.*;
 import com.dacaspex.propertysheet.property.selection.Item;
@@ -81,7 +82,7 @@ public class Main {
                     ))
             );
 
-            propertyTable = new PropertySheet();
+            propertyTable = new PropertySheet(new PropertySheetOptions());
             propertyTable.addProperty(prop1);
             propertyTable.addProperty(prop2);
             propertyTable.addProperty(prop3);
