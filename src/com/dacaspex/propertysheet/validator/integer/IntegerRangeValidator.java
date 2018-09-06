@@ -16,6 +16,14 @@ public class IntegerRangeValidator implements Validator {
         this.upperBound = upperBound;
     }
 
+    public void setLowerBound(int lowerBound) {
+        this.lowerBound = lowerBound;
+    }
+
+    public void setUpperBound(int upperBound) {
+        this.upperBound = upperBound;
+    }
+
     @Override
     public boolean validate(Object object) {
         int value = Integer.parseInt((String) object);

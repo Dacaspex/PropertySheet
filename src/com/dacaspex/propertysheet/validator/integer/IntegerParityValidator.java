@@ -10,6 +10,10 @@ public class IntegerParityValidator implements Validator {
         this(true);
     }
 
+    public void setEven(boolean even) {
+        this.even = even;
+    }
+
     public IntegerParityValidator(boolean even) {
         this.even = even;
     }
