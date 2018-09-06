@@ -1,4 +1,6 @@
-package com.dacaspex.propertysheet.validator;
+package com.dacaspex.propertysheet.validator.longNumber;
+
+import com.dacaspex.propertysheet.validator.Validator;
 
 /**
  * Default implementation to validate long objects

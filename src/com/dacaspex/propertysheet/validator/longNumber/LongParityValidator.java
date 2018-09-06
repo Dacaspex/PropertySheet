@@ -1,26 +1,26 @@
-package com.dacaspex.propertysheet.validator.integer;
+package com.dacaspex.propertysheet.validator.longNumber;
 
 import com.dacaspex.propertysheet.validator.Validator;
 
-public class IntegerParityValidator implements Validator {
+public class LongParityValidator implements Validator {
 
     protected boolean even;
 
-    public IntegerParityValidator() {
+    public LongParityValidator() {
         this(true);
-    }
-
-    public IntegerParityValidator(boolean even) {
-        this.even = even;
     }
 
     public void setEven(boolean even) {
         this.even = even;
     }
 
+    public LongParityValidator(boolean even) {
+        this.even = even;
+    }
+
     @Override
     public boolean validate(Object object) {
-        int value = Integer.parseInt((String) object);
+        long value = Long.parseLong((String) object);
 
         if (even) {
             return value % 2 == 0;

@@ -1,6 +1,6 @@
 package com.dacaspex.propertysheet.property;
 
-import com.dacaspex.propertysheet.validator.LongValidator;
+import com.dacaspex.propertysheet.validator.longNumber.LongValidator;
 import com.dacaspex.propertysheet.validator.Validator;
 
 public class LongProperty extends AbstractProperty<Long> {
