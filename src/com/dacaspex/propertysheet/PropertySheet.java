@@ -111,6 +111,8 @@ public class PropertySheet extends JTable {
             addProperty(property, new IntegerEditor(property, this));
         } else if (property instanceof FloatProperty) {
             addProperty(property, new FloatEditor(property, this));
+        } else if (property instanceof DoubleProperty) {
+            addProperty(property, new DoubleEditor(property, this));
         } else if (property instanceof BooleanProperty) {
             addProperty(property, new BooleanEditor(property, this), new BooleanRenderer());
         } else if (property instanceof ColorProperty) {

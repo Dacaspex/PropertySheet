@@ -1,6 +1,6 @@
 package com.dacaspex.propertysheet.property;
 
-import com.dacaspex.propertysheet.validator.DoubleValidator;
+import com.dacaspex.propertysheet.validator.doubleNumber.DoubleValidator;
 import com.dacaspex.propertysheet.validator.Validator;
 
 public class DoubleProperty extends AbstractProperty<Double> {

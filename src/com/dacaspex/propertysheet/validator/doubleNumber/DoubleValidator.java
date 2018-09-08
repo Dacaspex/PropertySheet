@@ -1,4 +1,6 @@
-package com.dacaspex.propertysheet.validator;
+package com.dacaspex.propertysheet.validator.doubleNumber;
+
+import com.dacaspex.propertysheet.validator.Validator;
 
 /**
  * Default implementation to validate double objects

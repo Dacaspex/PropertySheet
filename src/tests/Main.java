@@ -6,7 +6,11 @@ import com.dacaspex.propertysheet.event.PropertySheetEventAdapter;
 import com.dacaspex.propertysheet.property.*;
 import com.dacaspex.propertysheet.property.selection.Item;
 import com.dacaspex.propertysheet.property.selection.SelectionProperty;
+import com.dacaspex.propertysheet.validator.CompoundValidator;
 import com.dacaspex.propertysheet.validator.StringValidator;
+import com.dacaspex.propertysheet.validator.doubleNumber.DoubleRangeValidator;
+import com.dacaspex.propertysheet.validator.doubleNumber.DoubleValidator;
+import com.dacaspex.propertysheet.validator.doubleNumber.DoubleZeroPolicyValidator;
 import com.dacaspex.propertysheet.validator.integer.IntegerValidatorFactory;
 
 import javax.swing.*;
@@ -70,7 +74,7 @@ public class Main {
             IntegerProperty prop1 = new IntegerProperty("Iterations", 2);
             IntegerProperty prop11 = new IntegerProperty(
                     "Integer",
-                    2,
+                    8,
                     new IntegerValidatorFactory()
                             .setLowerBound(5)
                             .setUpperBound(15)
@@ -91,6 +95,13 @@ public class Main {
                             new Item<>(new TestItem(), "Item 2")
                     ))
             );
+            DoubleProperty prop8 = new DoubleProperty("Double", 2.34,
+                    new CompoundValidator(
+                            new DoubleValidator(),
+                            new DoubleRangeValidator(-1.2, 45.33, true, false),
+                            new DoubleZeroPolicyValidator(false)
+                    )
+            );
 
             propertyTable = new PropertySheet(new PropertySheetOptions());
             propertyTable.addProperty(prop1);
@@ -101,6 +112,7 @@ public class Main {
             propertyTable.addProperty(prop5);
             propertyTable.addProperty(prop6);
             propertyTable.addProperty(prop7);
+            propertyTable.addProperty(prop8);
 
             propertyTable.addEventListener(new EventListener());
         }
