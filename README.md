@@ -4,7 +4,7 @@ Java Swing property sheet component. Build settings menus on the fly.
 ![Example image of property sheet](https://i.imgur.com/gd79Tyi.png)
 
 ## How it works, simply
-The `PropertySheet` is an augmented `JTable` to wich you can quickly add properties. These are then rendered in a sort of settings menu style.  
+The `PropertySheet` is an augmented `JTable` to which you can quickly add properties. These are then rendered in a sort of settings menu style.  
 ```java
 IntegerProperty prop1 = new IntegerProperty("My integer property", 42);
 FloatProperty prop2 = new FLoatProperty("My float property", 11.12);
@@ -49,20 +49,3 @@ IntegerProperty prop = new IntegerProperty(
 ```
 ### Custom properties
 You can create custom properties with custom renderers and editors (as long as the `JTable` supports it). These can be added via various methods in the `PropertySheet` class. 
-
-### Event listeners
-Add event listeners to listen for update or create events.
-```java
-class EventListener implements PropertySheetEventListener {
-     @Override
-     public void onPropertyUpdated(Property property) {
-         // TODO
-     }
-
-     @Override
-     public void onPropertyAdded(Property property) {
-         // TODO
-     }
- }
-```
-Or let your event listener class extend the `PropertySheetEventAdapter` for easier use.
