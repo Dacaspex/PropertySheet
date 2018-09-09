@@ -1,5 +1,7 @@
 # PropertySheet
-Java Swing property sheet component. Build settings menus on the fly.
+Java Swing property sheet component. Build settings menus on the fly.  
+
+![Example image of property sheet](https://i.imgur.com/gd79Tyi.png)
 
 ## How it works, simply
 The `PropertySheet` is an augmented `JTable` to wich you can quickly add properties. These are then rendered in a sort of settings menu style.  
