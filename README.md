@@ -49,3 +49,20 @@ IntegerProperty prop = new IntegerProperty(
 ```
 ### Custom properties
 You can create custom properties with custom renderers and editors (as long as the `JTable` supports it). These can be added via various methods in the `PropertySheet` class. 
+
+### Event listeners
+Add event listeners to listen for update or create events.
+```java
+class EventListener implements PropertySheetEventListener {
+     @Override
+     public void onPropertyUpdated(Property property) {
+         // TODO
+     }
+
+     @Override
+     public void onPropertyAdded(Property property) {
+         // TODO
+     }
+ }
+```
+Or let your event listener class extend the `PropertySheetEventAdapter` for easier use.
