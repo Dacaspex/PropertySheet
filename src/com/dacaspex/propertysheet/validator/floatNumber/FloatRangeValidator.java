@@ -1,18 +1,18 @@
-package com.dacaspex.propertysheet.validator.doubleNumber;
+package com.dacaspex.propertysheet.validator.floatNumber;
 
 import com.dacaspex.propertysheet.validator.Validator;
 
-public class DoubleRangeValidator implements Validator {
+public class FloatRangeValidator implements Validator {
 
-    protected double lowerBound;
-    protected double upperBound;
+    protected float lowerBound;
+    protected float upperBound;
 
     protected boolean includeLowerBound;
     protected boolean includeUpperBound;
 
-    public DoubleRangeValidator(
-            double lowerBound,
-            double upperBound,
+    public FloatRangeValidator(
+            float lowerBound,
+            float upperBound,
             boolean includeLowerBound,
             boolean includeUpperBound
     ) {
@@ -22,19 +22,19 @@ public class DoubleRangeValidator implements Validator {
         this.includeUpperBound = includeUpperBound;
     }
 
-    public DoubleRangeValidator(double lowerBound, double upperBound) {
+    public FloatRangeValidator(float lowerBound, float upperBound) {
         this(lowerBound, upperBound, true, true);
     }
 
-    public DoubleRangeValidator() {
-        this(-Double.MAX_VALUE, Double.MAX_VALUE, true, true);
+    public FloatRangeValidator() {
+        this(-Float.MAX_VALUE, Float.MAX_VALUE, true, true);
     }
 
-    public void setLowerBound(double lowerBound) {
+    public void setLowerBound(float lowerBound) {
         this.lowerBound = lowerBound;
     }
 
-    public void setUpperBound(double upperBound) {
+    public void setUpperBound(float upperBound) {
         this.upperBound = upperBound;
     }
 
@@ -53,7 +53,7 @@ public class DoubleRangeValidator implements Validator {
 
     @Override
     public boolean validate(Object object) {
-        double value = Double.parseDouble((String) object);
+        float value = Float.parseFloat((String) object);
 
         if ((value == lowerBound && includeLowerBound) || (value == upperBound && includeUpperBound)) {
             return true;

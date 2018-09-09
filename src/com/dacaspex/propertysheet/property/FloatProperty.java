@@ -1,6 +1,6 @@
 package com.dacaspex.propertysheet.property;
 
-import com.dacaspex.propertysheet.validator.FloatValidator;
+import com.dacaspex.propertysheet.validator.floatNumber.FloatValidator;
 import com.dacaspex.propertysheet.validator.Validator;
 
 public class FloatProperty extends AbstractProperty<Float> {
