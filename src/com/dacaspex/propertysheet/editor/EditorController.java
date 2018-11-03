@@ -18,6 +18,10 @@ public class EditorController extends AbstractCellEditor implements TableCellEdi
         editors.put(key, editor);
     }
 
+    public void clear() {
+        editors.clear();
+    }
+
     @Override
     public Object getCellEditorValue() {
         return lastSelected.getCellEditorValue();

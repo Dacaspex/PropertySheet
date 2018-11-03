@@ -16,4 +16,9 @@ public class PropertySheetModel extends DefaultTableModel {
         return (column == 1);
     }
 
+    public void clear() {
+        for (int i = getRowCount() - 1; i >= 0; i--) {
+            removeRow(i);
+        }
+    }
 }

@@ -115,6 +115,9 @@ public class Main {
             propertyTable.addProperty(prop8);
 
             propertyTable.addEventListener(new EventListener());
+
+            propertyTable.clear();
+            propertyTable.addProperty(prop5);
         }
     }
 
