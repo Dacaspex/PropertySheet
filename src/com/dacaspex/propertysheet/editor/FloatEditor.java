@@ -33,8 +33,12 @@ public class FloatEditor extends PropertySheetCellEditor implements KeyListener 
     @Override
     public void keyReleased(KeyEvent event) {
 
+        if (Keys.ignoreKey(event.getKeyCode())) {
+            return;
+        }
+
         JTextField textField = (JTextField) super.getComponent();
-        String value = (String) textField.getText();
+        String value = textField.getText();
 
         if (property.getValidator().validate(value)) {
             property.setValue(Float.parseFloat(value));

@@ -27,6 +27,10 @@ public class StringEditor extends PropertySheetCellEditor implements KeyListener
     @Override
     public void keyReleased(KeyEvent event) {
 
+        if (Keys.ignoreKey(event.getKeyCode())) {
+            return;
+        }
+
         // Get value from editor component
         JTextField textField = (JTextField) super.getComponent();
         String value = textField.getText();

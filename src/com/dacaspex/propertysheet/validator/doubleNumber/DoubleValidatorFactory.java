@@ -48,6 +48,24 @@ public class DoubleValidatorFactory {
         return this;
     }
 
+    public DoubleValidatorFactory setLowerBound(double lowerBound) {
+        if (rangeValidator == null) {
+            rangeValidator = new DoubleRangeValidator();
+        }
+        rangeValidator.setLowerBound(lowerBound);
+
+        return this;
+    }
+
+    public DoubleValidatorFactory setUpperBound(double upperBound) {
+        if (rangeValidator == null) {
+            rangeValidator = new DoubleRangeValidator();
+        }
+        rangeValidator.setUpperBound(upperBound);
+
+        return this;
+    }
+
     public DoubleValidatorFactory allowZero(boolean allowZero) {
         zeroPolicyValidator = new DoubleZeroPolicyValidator(allowZero);
 

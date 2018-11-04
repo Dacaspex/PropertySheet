@@ -135,11 +135,6 @@ public class PropertySheet extends JTable {
     }
 
     public void clear() {
-        // TODO: Property sheet model
-        // TODO: Editor controller
-        // TODO: Renderers
-        // TODO: Cursor
-
         propertySheetModel.clear();
         editorController.clear();
         renderers.clear();
