@@ -11,7 +11,6 @@ import java.awt.event.ItemListener;
 public class SelectionEditor extends PropertySheetCellEditor implements ItemListener {
 
     private SelectionProperty property;
-    private PropertySheet sheet;
     private JComboBox comboBox;
 
     public SelectionEditor(SelectionProperty property, PropertySheet table) {

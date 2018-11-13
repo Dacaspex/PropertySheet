@@ -7,14 +7,14 @@ import java.util.HashMap;
 
 public class EditorController extends AbstractCellEditor implements TableCellEditor {
 
-    private HashMap<Integer, DefaultCellEditor> editors;
-    private DefaultCellEditor lastSelected;
+    private HashMap<Integer, TableCellEditor> editors;
+    private TableCellEditor lastSelected;
 
     public EditorController() {
         editors = new HashMap<>();
     }
 
-    public void addEditor(int key, DefaultCellEditor editor) {
+    public void addEditor(int key, TableCellEditor editor) {
         editors.put(key, editor);
     }
 

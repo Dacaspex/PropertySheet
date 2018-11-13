@@ -37,7 +37,7 @@ public class ColorEditor extends PropertySheetCellEditor {
     protected void changeColor(Color color) {
         if (color != null) {
             property.setValue(color);
-            delegate.setBackground(color);
+//            delegate.setBackground(color);
         }
     }
 

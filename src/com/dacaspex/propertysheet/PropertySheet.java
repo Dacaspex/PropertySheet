@@ -1,5 +1,7 @@
 package com.dacaspex.propertysheet;
 
+import com.dacaspex.propertysheet.cell.AbstractCellComponent;
+import com.dacaspex.propertysheet.cell.IntegerCellComponent;
 import com.dacaspex.propertysheet.editor.*;
 import com.dacaspex.propertysheet.event.EventDispatcher;
 import com.dacaspex.propertysheet.event.PropertySheetEventListener;
@@ -10,8 +12,11 @@ import com.dacaspex.propertysheet.renderer.BooleanRenderer;
 import com.dacaspex.propertysheet.renderer.ColorRenderer;
 
 import javax.swing.*;
+import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class PropertySheet extends JTable {
 
@@ -21,6 +26,8 @@ public class PropertySheet extends JTable {
     private HashMap<Integer, TableCellRenderer> renderers;
     private PropertySheetModel propertySheetModel;
     private EventDispatcher eventDispatcher;
+
+    private List<AbstractCellComponent> cellComponents;
 
     /**
      * @param options Options object for the property sheet
@@ -40,13 +47,22 @@ public class PropertySheet extends JTable {
 
         // Set table properties
         setModel(propertySheetModel);
-        getColumnModel().getColumn(1).setCellEditor(editorController);
+//        getColumnModel().getColumn(1).setCellEditor(editorController);
         setRowHeight(options.getRowHeight());
         getTableHeader().setReorderingAllowed(false);
+
+        cellComponents = new ArrayList<>();
+        AbstractCellComponent.init(options, eventDispatcher);
     }
 
     public PropertySheetOptions getOptions() {
         return options;
+    }
+
+    public void addProperty(Property property, AbstractCellComponent cellComponent) {
+        propertySheetModel.addRow(new Object[] {property.getName(), property.getValue()});
+        cellComponents.add(cellComponent);
+        eventDispatcher.dispatchPropertyAddedEvent(property);
     }
 
     /**
@@ -60,7 +76,7 @@ public class PropertySheet extends JTable {
     public void addProperty(
             Property property,
             String display,
-            PropertySheetCellEditor editor,
+            TableCellEditor editor,
             TableCellRenderer renderer
     ) {
         propertySheetModel.addRow(new String[]{property.getName(), display});
@@ -96,7 +112,7 @@ public class PropertySheet extends JTable {
      * @param property Property to add
      * @param editor   Editor for the property
      */
-    public void addProperty(Property property, PropertySheetCellEditor editor) {
+    public void addProperty(Property property, TableCellEditor editor) {
         addProperty(property, property.getValue().toString(), editor, null);
     }
 
@@ -108,7 +124,7 @@ public class PropertySheet extends JTable {
      */
     public void addProperty(Property property) {
         if (property instanceof IntegerProperty) {
-            addProperty(property, new IntegerEditor(property, this));
+            addProperty(property, new IntegerCellComponent((IntegerProperty) property));
         } else if (property instanceof FloatProperty) {
             addProperty(property, new FloatEditor(property, this));
         } else if (property instanceof DoubleProperty) {
@@ -142,13 +158,33 @@ public class PropertySheet extends JTable {
     }
 
     @Override
+    public TableCellEditor getCellEditor(int row, int column) {
+        if (column == 1) {
+            return cellComponents.get(row);
+        }
+
+        return super.getCellEditor(row, column);
+    }
+
+    @Override
     public TableCellRenderer getCellRenderer(int row, int column) {
 
         if (column == 1) {
-            return renderers.getOrDefault(row, super.getCellRenderer(row, column));
+            return cellComponents.get(row);
         }
 
         return super.getCellRenderer(row, column);
+
+//        if (column == 1) {
+//            if (row == 0) {
+//                System.out.println("test");
+//                return new IntegerCellComponent(new IntegerProperty("Test", 1234));
+//            }
+//
+//            return renderers.getOrDefault(row, super.getCellRenderer(row, column));
+//        }
+//
+//        return super.getCellRenderer(row, column);
     }
 
     public void addEventListener(PropertySheetEventListener eventListener) {

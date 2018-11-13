@@ -105,19 +105,16 @@ public class Main {
 
             propertyTable = new PropertySheet(new PropertySheetOptions());
             propertyTable.addProperty(prop1);
-            propertyTable.addProperty(prop11);
-            propertyTable.addProperty(prop2);
-            propertyTable.addProperty(prop3);
-            propertyTable.addProperty(prop4);
-            propertyTable.addProperty(prop5);
-            propertyTable.addProperty(prop6);
-            propertyTable.addProperty(prop7);
-            propertyTable.addProperty(prop8);
+//            propertyTable.addProperty(prop11);
+//            propertyTable.addProperty(prop2);
+//            propertyTable.addProperty(prop3);
+//            propertyTable.addProperty(prop4);
+//            propertyTable.addProperty(prop5);
+//            propertyTable.addProperty(prop6);
+//            propertyTable.addProperty(prop7);
+//            propertyTable.addProperty(prop8);
 
             propertyTable.addEventListener(new EventListener());
-
-            propertyTable.clear();
-            propertyTable.addProperty(prop5);
         }
     }
 
