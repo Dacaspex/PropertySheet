@@ -1,4 +1,4 @@
-package com.dacaspex.propertysheet.editor;
+package com.dacaspex.propertysheet.util;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;

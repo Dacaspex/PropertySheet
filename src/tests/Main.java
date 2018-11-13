@@ -105,6 +105,13 @@ public class Main {
 
             propertyTable = new PropertySheet(new PropertySheetOptions());
             propertyTable.addProperty(prop1);
+            propertyTable.addProperty(prop11);
+            propertyTable.addProperty(prop4);
+            propertyTable.addProperty(prop5);
+            propertyTable.addProperty(prop8);
+            propertyTable.addProperty(prop2);
+            propertyTable.addProperty(prop3);
+            propertyTable.addProperty(prop7);
 //            propertyTable.addProperty(prop11);
 //            propertyTable.addProperty(prop2);
 //            propertyTable.addProperty(prop3);
@@ -121,7 +128,7 @@ public class Main {
     class EventListener extends PropertySheetEventAdapter {
         @Override
         public void onPropertyUpdated(Property property) {
-            // TODO
+            System.out.println(property.getName() + " : " + property.getValue());
         }
     }
 

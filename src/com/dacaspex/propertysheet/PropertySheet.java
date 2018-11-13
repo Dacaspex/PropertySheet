@@ -1,7 +1,6 @@
 package com.dacaspex.propertysheet;
 
-import com.dacaspex.propertysheet.cell.AbstractCellComponent;
-import com.dacaspex.propertysheet.cell.IntegerCellComponent;
+import com.dacaspex.propertysheet.cell.*;
 import com.dacaspex.propertysheet.editor.*;
 import com.dacaspex.propertysheet.event.EventDispatcher;
 import com.dacaspex.propertysheet.event.PropertySheetEventListener;
@@ -65,6 +64,26 @@ public class PropertySheet extends JTable {
         eventDispatcher.dispatchPropertyAddedEvent(property);
     }
 
+    public void addProperty(Property property) {
+        if (property instanceof IntegerProperty) {
+            addProperty(property, new IntegerCellComponent((IntegerProperty) property));
+        } else if (property instanceof LongProperty) {
+            addProperty(property, new LongCellComponent((LongProperty) property));
+        } else if (property instanceof DoubleProperty) {
+            addProperty(property, new DoubleCellComponent((DoubleProperty) property));
+        } else if (property instanceof FloatProperty) {
+            addProperty(property, new FloatCellComponent((FloatProperty) property));
+        } else if (property instanceof StringProperty) {
+            addProperty(property, new StringCellComponent((StringProperty) property));
+        } else if (property instanceof ColorProperty) {
+            addProperty(property, new ColorCellComponent((ColorProperty) property));
+        } else if (property instanceof BooleanProperty) {
+            addProperty(property, new BooleanCellComponent((BooleanProperty) property));
+        } else if (property instanceof SelectionProperty) {
+            addProperty(property, new SelectionCellComponent((SelectionProperty) property));
+        }
+    }
+
     /**
      * Add a property to the property sheet
      *
@@ -116,39 +135,39 @@ public class PropertySheet extends JTable {
         addProperty(property, property.getValue().toString(), editor, null);
     }
 
-    /**
-     * Adds a default known property to the property sheet
-     *
-     * @param property Property to add. Must be an instance of the properties in this library
-     * @throws PropertyNotSupportedException If property is not known
-     */
-    public void addProperty(Property property) {
-        if (property instanceof IntegerProperty) {
-            addProperty(property, new IntegerCellComponent((IntegerProperty) property));
-        } else if (property instanceof FloatProperty) {
-            addProperty(property, new FloatEditor(property, this));
-        } else if (property instanceof DoubleProperty) {
-            addProperty(property, new DoubleEditor(property, this));
-        } else if (property instanceof BooleanProperty) {
-            addProperty(property, new BooleanEditor(property, this), new BooleanRenderer());
-        } else if (property instanceof ColorProperty) {
-            String color = String.format(
-                    "#%06x",
-                    ((ColorProperty) property).getValue().getRGB() & 0x00FFFFFF
-            );
-            addProperty(property, color, new ColorEditor(property, this), new ColorRenderer());
-        } else if (property instanceof StringProperty) {
-            addProperty(property, new StringEditor(property, this));
-        } else if (property instanceof SelectionProperty) {
-            addProperty(
-                    property,
-                    ((SelectionProperty) property).getItems().get(0).toString(),
-                    new SelectionEditor((SelectionProperty) property, this)
-            );
-        } else {
-            throw new PropertyNotSupportedException(property);
-        }
-    }
+//    /**
+//     * Adds a default known property to the property sheet
+//     *
+//     * @param property Property to add. Must be an instance of the properties in this library
+//     * @throws PropertyNotSupportedException If property is not known
+//     */
+//    public void addProperty(Property property) {
+//        if (property instanceof IntegerProperty) {
+//            addProperty(property, new IntegerCellComponent((IntegerProperty) property));
+//        } else if (property instanceof FloatProperty) {
+//            addProperty(property, new FloatEditor(property, this));
+//        } else if (property instanceof DoubleProperty) {
+//            addProperty(property, new DoubleEditor(property, this));
+//        } else if (property instanceof BooleanProperty) {
+//            addProperty(property, new BooleanEditor(property, this), new BooleanRenderer());
+//        } else if (property instanceof ColorProperty) {
+//            String color = String.format(
+//                    "#%06x",
+//                    ((ColorProperty) property).getValue().getRGB() & 0x00FFFFFF
+//            );
+//            addProperty(property, color, new ColorEditor(property, this), new ColorRenderer());
+//        } else if (property instanceof StringProperty) {
+//            addProperty(property, new StringEditor(property, this));
+//        } else if (property instanceof SelectionProperty) {
+//            addProperty(
+//                    property,
+//                    ((SelectionProperty) property).getItems().get(0).toString(),
+//                    new SelectionEditor((SelectionProperty) property, this)
+//            );
+//        } else {
+//            throw new PropertyNotSupportedException(property);
+//        }
+//    }
 
     public void clear() {
         propertySheetModel.clear();

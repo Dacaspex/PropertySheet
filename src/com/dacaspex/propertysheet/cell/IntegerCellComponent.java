@@ -1,6 +1,6 @@
 package com.dacaspex.propertysheet.cell;
 
-import com.dacaspex.propertysheet.editor.Keys;
+import com.dacaspex.propertysheet.util.Keys;
 import com.dacaspex.propertysheet.property.IntegerProperty;
 
 import javax.swing.*;
