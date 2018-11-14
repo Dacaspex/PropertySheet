@@ -102,6 +102,9 @@ public class Main {
                             new DoubleZeroPolicyValidator(false)
                     )
             );
+            ActionProperty prop9 = new ActionProperty("Press me", () -> {
+                System.out.println("Pressed");
+            });
 
             propertyTable = new PropertySheet(new PropertySheetOptions());
             propertyTable.addProperty(prop1);
@@ -112,6 +115,7 @@ public class Main {
             propertyTable.addProperty(prop2);
             propertyTable.addProperty(prop3);
             propertyTable.addProperty(prop7);
+            propertyTable.addProperty(prop9);
 //            propertyTable.addProperty(prop11);
 //            propertyTable.addProperty(prop2);
 //            propertyTable.addProperty(prop3);

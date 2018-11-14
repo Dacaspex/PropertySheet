@@ -3,6 +3,7 @@ package com.dacaspex.propertysheet;
 import com.dacaspex.propertysheet.cell.*;
 import com.dacaspex.propertysheet.event.EventDispatcher;
 import com.dacaspex.propertysheet.event.PropertySheetEventListener;
+import com.dacaspex.propertysheet.exception.PropertyNotSupportedException;
 import com.dacaspex.propertysheet.property.*;
 import com.dacaspex.propertysheet.property.selection.SelectionProperty;
 
@@ -68,6 +69,10 @@ public class PropertySheet extends JTable {
             addProperty(property, new BooleanCellComponent((BooleanProperty) property));
         } else if (property instanceof SelectionProperty) {
             addProperty(property, new SelectionCellComponent((SelectionProperty) property));
+        } else if (property instanceof ActionProperty) {
+            addProperty(property, new ActionCellComponent((ActionProperty) property));
+        } else {
+            throw new PropertyNotSupportedException(property);
         }
     }
 
