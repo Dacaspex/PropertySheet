@@ -7,6 +7,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import java.awt.Component;
+import java.awt.event.ItemEvent;
 
 public class SelectionCellComponent extends AbstractCellComponent {
 
@@ -18,6 +19,16 @@ public class SelectionCellComponent extends AbstractCellComponent {
         this.comboBox = new JComboBox<>();
 
         property.getItems().forEach(e -> comboBox.addItem((Item) e));
+        comboBox.addItemListener(e -> {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                if (comboBox.getSelectedItem() == null) {
+                    return;
+                }
+
+                property.setValue(((Item) comboBox.getSelectedItem()).getValue());
+                eventDispatcher.dispatchUpdateEvent(property);
+            }
+        });
     }
 
     @Override

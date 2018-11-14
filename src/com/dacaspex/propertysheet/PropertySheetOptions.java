@@ -57,4 +57,8 @@ public class PropertySheetOptions {
         this.rowHeight = rowHeight;
         return this;
     }
+
+    public class Builder {
+
+    }
 }
