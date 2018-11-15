@@ -116,6 +116,9 @@ public class Main {
             propertyTable.addProperty(prop3);
             propertyTable.addProperty(prop7);
             propertyTable.addProperty(prop9);
+
+//            propertyTable.removeProperty(prop1);
+
 //            propertyTable.addProperty(prop11);
 //            propertyTable.addProperty(prop2);
 //            propertyTable.addProperty(prop3);

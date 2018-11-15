@@ -20,6 +20,7 @@ public class PropertySheet extends JTable {
     private EventDispatcher eventDispatcher;
 
     private List<AbstractCellComponent> cellComponents;
+    private List<Property> properties;
 
     /**
      * @param options Options object for the property sheet
@@ -32,13 +33,14 @@ public class PropertySheet extends JTable {
         // Initialise required variables
         this.propertySheetModel = new PropertySheetModel(options.getHeaders());
         this.eventDispatcher = new EventDispatcher();
+        this.cellComponents = new ArrayList<>();
+        this.properties = new ArrayList<>();
 
         // Set table properties
         setModel(propertySheetModel);
         setRowHeight(options.getRowHeight());
         getTableHeader().setReorderingAllowed(false);
 
-        cellComponents = new ArrayList<>();
         AbstractCellComponent.init(options, eventDispatcher);
     }
 
@@ -49,6 +51,7 @@ public class PropertySheet extends JTable {
     public void addProperty(Property property, AbstractCellComponent cellComponent) {
         propertySheetModel.addRow(new Object[]{property.getName(), property.getValue()});
         cellComponents.add(cellComponent);
+        properties.add(property);
         eventDispatcher.dispatchPropertyAddedEvent(property);
     }
 
@@ -74,6 +77,16 @@ public class PropertySheet extends JTable {
         } else {
             throw new PropertyNotSupportedException(property);
         }
+    }
+
+    public void removeProperty(Property property) {
+        removeProperty(properties.indexOf(property));
+    }
+
+    public void removeProperty(int row) {
+        cellComponents.remove(row);
+        properties.remove(row);
+        propertySheetModel.removeRow(row);
     }
 
     public void clear() {
