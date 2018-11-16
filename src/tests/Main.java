@@ -13,8 +13,10 @@ import com.dacaspex.propertysheet.validator.doubleNumber.DoubleValidator;
 import com.dacaspex.propertysheet.validator.doubleNumber.DoubleZeroPolicyValidator;
 import com.dacaspex.propertysheet.validator.integer.IntegerValidatorFactory;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -41,19 +43,6 @@ public class Main {
         public Frame() {
             setVisible(true);
             buildGUI();
-        }
-
-        public void update() {
-
-            buildPropertyTable();
-
-            getContentPane().removeAll();
-            scrollPane = new JScrollPane(propertyTable);
-            getContentPane().add(scrollPane);
-
-            revalidate();
-            repaint();
-
         }
 
         public void buildGUI() {
@@ -117,17 +106,6 @@ public class Main {
             propertyTable.addProperty(prop7);
             propertyTable.addProperty(prop9);
 
-//            propertyTable.removeProperty(prop1);
-
-//            propertyTable.addProperty(prop11);
-//            propertyTable.addProperty(prop2);
-//            propertyTable.addProperty(prop3);
-//            propertyTable.addProperty(prop4);
-//            propertyTable.addProperty(prop5);
-//            propertyTable.addProperty(prop6);
-//            propertyTable.addProperty(prop7);
-//            propertyTable.addProperty(prop8);
-
             propertyTable.addEventListener(new EventListener());
         }
     }
@@ -139,6 +117,6 @@ public class Main {
         }
     }
 
-    class TestItem {
+    private class TestItem {
     }
 }

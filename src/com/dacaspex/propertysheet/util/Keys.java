@@ -4,6 +4,9 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Keys on which a text field should not validate the input.
+ */
 public final class Keys {
 
     private static ArrayList<Integer> invalidKeys = new ArrayList<>(Arrays.asList(

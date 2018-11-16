@@ -13,12 +13,16 @@ import javax.swing.table.TableCellRenderer;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Property sheet.
+ * <p>
+ * Simple Java Swing GUI component to display and edit properties.
+ */
 public class PropertySheet extends JTable {
 
     private PropertySheetOptions options;
     private PropertySheetModel propertySheetModel;
     private EventDispatcher eventDispatcher;
-
     private List<AbstractCellComponent> cellComponents;
     private List<Property> properties;
 
@@ -26,28 +30,25 @@ public class PropertySheet extends JTable {
      * @param options Options object for the property sheet
      */
     public PropertySheet(PropertySheetOptions options) {
-
-        // Set options
         this.options = options;
-
-        // Initialise required variables
         this.propertySheetModel = new PropertySheetModel(options.getHeaders());
         this.eventDispatcher = new EventDispatcher();
         this.cellComponents = new ArrayList<>();
         this.properties = new ArrayList<>();
 
-        // Set table properties
+        // Set necessary properties
         setModel(propertySheetModel);
         setRowHeight(options.getRowHeight());
         getTableHeader().setReorderingAllowed(false);
-
         AbstractCellComponent.init(options, eventDispatcher);
     }
 
-    public PropertySheetOptions getOptions() {
-        return options;
-    }
-
+    /**
+     * Add a new property to the table with a custom cell component.
+     *
+     * @param property      Property
+     * @param cellComponent Custom cell component
+     */
     public void addProperty(Property property, AbstractCellComponent cellComponent) {
         propertySheetModel.addRow(new Object[]{property.getName(), property.getValue()});
         cellComponents.add(cellComponent);
@@ -55,7 +56,14 @@ public class PropertySheet extends JTable {
         eventDispatcher.dispatchPropertyAddedEvent(property);
     }
 
-    public void addProperty(Property property) {
+    /**
+     * Add a standard property. If the property is not standard, i.e. there does not exist a standard
+     * cell component, a {@code PropertyNotSupportedException} is thrown.
+     *
+     * @param property Standard property
+     * @throws PropertyNotSupportedException If {@code property} is not a standard property
+     */
+    public void addProperty(Property property) throws PropertyNotSupportedException {
         if (property instanceof IntegerProperty) {
             addProperty(property, new IntegerCellComponent((IntegerProperty) property));
         } else if (property instanceof LongProperty) {
@@ -79,19 +87,50 @@ public class PropertySheet extends JTable {
         }
     }
 
+    /**
+     * Removes the property from the sheet.
+     *
+     * @param property Property
+     */
     public void removeProperty(Property property) {
         removeProperty(properties.indexOf(property));
     }
 
+    /**
+     * Removes a row from the table.
+     *
+     * @param row Row index
+     */
     public void removeProperty(int row) {
         cellComponents.remove(row);
         properties.remove(row);
         propertySheetModel.removeRow(row);
     }
 
+    /**
+     * Removes all components from the table
+     */
     public void clear() {
         propertySheetModel.clear();
         cellComponents.clear();
+    }
+
+    /**
+     * Add a new event listener.
+     *
+     * @param eventListener Event listener
+     */
+    public void addEventListener(PropertySheetEventListener eventListener) {
+        eventDispatcher.addEventListener(eventListener);
+    }
+
+    /**
+     * Remove an event listener
+     *
+     * @param eventListener Event listener
+     */
+    public void removeEventListener(PropertySheetEventListener eventListener) {
+        eventDispatcher.removeEventListener(eventListener);
     }
 
     @Override
@@ -110,13 +149,5 @@ public class PropertySheet extends JTable {
         }
 
         return super.getCellRenderer(row, column);
-    }
-
-    public void addEventListener(PropertySheetEventListener eventListener) {
-        eventDispatcher.addEventListener(eventListener);
-    }
-
-    public void removeEventListener(PropertySheetEventListener eventListener) {
-        eventDispatcher.removeEventListener(eventListener);
     }
 }
