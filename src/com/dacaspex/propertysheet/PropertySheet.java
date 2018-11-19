@@ -40,7 +40,6 @@ public class PropertySheet extends JTable {
         setModel(propertySheetModel);
         setRowHeight(options.getRowHeight());
         getTableHeader().setReorderingAllowed(false);
-        AbstractCellComponent.init(options, eventDispatcher);
     }
 
     /**
@@ -53,6 +52,7 @@ public class PropertySheet extends JTable {
         propertySheetModel.addRow(new Object[]{property.getName(), property.getValue()});
         cellComponents.add(cellComponent);
         properties.add(property);
+        cellComponent.init(options, eventDispatcher);
         eventDispatcher.dispatchPropertyAddedEvent(property);
     }
 

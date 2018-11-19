@@ -3,15 +3,16 @@ package com.dacaspex.propertysheet.cell;
 import com.dacaspex.propertysheet.PropertySheetOptions;
 import com.dacaspex.propertysheet.event.EventDispatcher;
 
-import javax.swing.*;
+import javax.swing.AbstractCellEditor;
+import javax.swing.JTable;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
-import java.awt.*;
+import java.awt.Component;
 
 public abstract class AbstractCellComponent extends AbstractCellEditor implements TableCellEditor, TableCellRenderer {
 
-    protected static PropertySheetOptions options;
-    protected static EventDispatcher eventDispatcher;
+    protected PropertySheetOptions options;
+    protected EventDispatcher eventDispatcher;
 
     @Override
     public abstract Component getTableCellEditorComponent(JTable jTable, Object o, boolean b, int i, int i1);
@@ -22,8 +23,8 @@ public abstract class AbstractCellComponent extends AbstractCellEditor implement
     @Override
     public abstract Component getTableCellRendererComponent(JTable jTable, Object o, boolean b, boolean b1, int i, int i1);
 
-    public static void init(PropertySheetOptions options, EventDispatcher eventDispatcher) {
-        AbstractCellComponent.options = options;
-        AbstractCellComponent.eventDispatcher = eventDispatcher;
+    public void init(PropertySheetOptions options, EventDispatcher eventDispatcher) {
+        this.options = options;
+        this.eventDispatcher = eventDispatcher;
     }
 }

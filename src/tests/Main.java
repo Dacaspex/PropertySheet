@@ -96,6 +96,9 @@ public class Main {
             });
 
             propertyTable = new PropertySheet(new PropertySheetOptions());
+            propertyTable.addEventListener(new EventListener());
+            propertyTable.clear();
+
             propertyTable.addProperty(prop1);
             propertyTable.addProperty(prop11);
             propertyTable.addProperty(prop4);
@@ -106,7 +109,7 @@ public class Main {
             propertyTable.addProperty(prop7);
             propertyTable.addProperty(prop9);
 
-            propertyTable.addEventListener(new EventListener());
+            repaint();
         }
     }
 
