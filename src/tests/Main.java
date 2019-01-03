@@ -93,7 +93,7 @@ public class Main {
                 System.out.println("Pressed");
             });
 
-            propertyTable = new PropertySheet(new PropertySheetOptions());
+            propertyTable = new PropertySheet(new PropertySheetOptions.Builder().build());
             propertyTable.addEventListener(new EventListener());
             propertyTable.clear();
 

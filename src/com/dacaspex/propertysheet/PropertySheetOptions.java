@@ -7,10 +7,22 @@ import java.awt.*;
  */
 public class PropertySheetOptions {
 
-    private String[] headers;
-    private Color backgroundColor;
-    private Color invalidColor;
-    private int rowHeight;
+    private final String[] headers;
+    private final Color backgroundColor;
+    private final Color invalidColor;
+    private final int rowHeight;
+
+    public PropertySheetOptions(
+            String[] headers,
+            Color backgroundColor,
+            Color invalidColor,
+            int rowHeight
+    ) {
+        this.headers = headers;
+        this.backgroundColor = backgroundColor;
+        this.invalidColor = invalidColor;
+        this.rowHeight = rowHeight;
+    }
 
     /**
      * Constructs a default option set
@@ -26,67 +38,58 @@ public class PropertySheetOptions {
         return headers;
     }
 
-    public void setHeaders(String header1, String header2) {
-        headers = new String[]{header1, header2};
-    }
-
     public Color getBackgroundColor() {
         return backgroundColor;
-    }
-
-    public void setBackgroundColor(Color backgroundColor) {
-        this.backgroundColor = backgroundColor;
     }
 
     public Color getInvalidColor() {
         return invalidColor;
     }
 
-    public void setInvalidColor(Color invalidColor) {
-        this.invalidColor = invalidColor;
-    }
-
     public int getRowHeight() {
         return rowHeight;
     }
 
-    public void setRowHeight(int rowHeight) {
-        this.rowHeight = rowHeight;
-    }
+    public static class Builder {
 
-    public class Builder {
-        private PropertySheetOptions options;
+        private String[] headers;
+        private Color backgroundColor;
+        private Color invalidColor;
+        private int rowHeight;
 
         public Builder() {
-            this.options = new PropertySheetOptions();
+            this.headers = new String[]{"Property", "value"};
+            this.backgroundColor = new Color(255, 255, 255);
+            this.invalidColor = new Color(255, 179, 176);
+            this.rowHeight = 30;
         }
 
         public Builder setHeaders(String header1, String header2) {
-            options.setHeaders(header1, header2);
+            this.headers = new String[]{header1, header2};
 
             return this;
         }
 
-        public Builder setBackgroundColor(Color color) {
-            options.setBackgroundColor(color);
+        public Builder setBackgroundColor(Color backgroundColor) {
+            this.backgroundColor = backgroundColor;
 
             return this;
         }
 
-        public Builder setInvalidColor(Color color) {
-            options.setInvalidColor(color);
+        public Builder setInvalidColor(Color invalidColor) {
+            this.invalidColor = invalidColor;
 
             return this;
         }
 
         public Builder setRowHeight(int rowHeight) {
-            options.setRowHeight(rowHeight);
+            this.rowHeight = rowHeight;
 
             return this;
         }
 
         public PropertySheetOptions build() {
-            return options;
+            return new PropertySheetOptions(headers, backgroundColor, invalidColor, rowHeight);
         }
     }
 }
