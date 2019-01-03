@@ -113,6 +113,7 @@ public class PropertySheet extends JTable {
     public void clear() {
         propertySheetModel.clear();
         cellComponents.clear();
+        properties.clear();
     }
 
     /**

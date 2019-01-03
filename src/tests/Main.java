@@ -13,10 +13,8 @@ import com.dacaspex.propertysheet.validator.doubleNumber.DoubleValidator;
 import com.dacaspex.propertysheet.validator.doubleNumber.DoubleZeroPolicyValidator;
 import com.dacaspex.propertysheet.validator.integer.IntegerValidatorFactory;
 
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import java.awt.Color;
-import java.awt.Dimension;
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -77,7 +75,7 @@ public class Main {
             StringProperty prop6 = new StringProperty("String 2", "test", new StringValidator(
                     new String[]{"test", "test 2", "foo"}
             ));
-            SelectionProperty prop7 = new SelectionProperty(
+            SelectionProperty prop7 = new SelectionProperty<>(
                     "Selection",
                     new ArrayList<>(Arrays.asList(
                             new Item<>(new TestItem(), "Item 1"),

@@ -5,17 +5,17 @@ import com.dacaspex.propertysheet.validator.NullValidator;
 
 import java.util.ArrayList;
 
-public class SelectionProperty<T> extends AbstractProperty<Item> {
+public class SelectionProperty<T> extends AbstractProperty<T> {
 
-    protected ArrayList<Item> items;
+    protected ArrayList<Item<T>> items;
 
-    public SelectionProperty(String name, ArrayList<Item> items) {
-        super(name, items.get(0), new NullValidator());
+    public SelectionProperty(String name, ArrayList<Item<T>> items) {
+        super(name, items.get(0).getValue(), new NullValidator());
 
         this.items = items;
     }
 
-    public ArrayList<Item> getItems() {
+    public ArrayList<Item<T>> getItems() {
         return items;
     }
 }
