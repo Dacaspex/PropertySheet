@@ -18,14 +18,17 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Class used for testing. Do not use this class
+ */
 public class Main {
-
-    public void run() {
-        new Frame();
-    }
 
     public static void main(String[] args) {
         (new Main()).run();
+    }
+
+    public void run() {
+        new Frame();
     }
 
     class Frame extends JFrame {
